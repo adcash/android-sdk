@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">ExampleProject</string>
+
+    <string name="banner_button">Show Banner</string>
+    <string name="interstitial_button">Show Interstitial</string>
+    <string name="rewarded_button">Show Rewarded Video</string>
+    <string name="native_ads_button">Show Native Ads</string>
+</resources>
