@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "25.0.1"
+    buildToolsVersion "25.0.3"
 
     defaultConfig {
         applicationId "com.adcash.mobileads.exampleproject"
@@ -22,7 +22,7 @@ android {
 
 dependencies {
     // Integrate Adcash SDK:
-    compile('com.adcash:adcash-sdk-lib:2.3.0')
+    compile('com.adcash:adcash-sdk-lib:2.4.0')
 
 
     // Required by Adcash SDK:

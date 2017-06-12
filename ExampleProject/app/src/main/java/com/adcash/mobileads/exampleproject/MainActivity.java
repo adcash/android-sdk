@@ -7,13 +7,14 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.adcash.mobileads.Adcash;
-import com.adcash.mobileads.AdcashError;
-import com.adcash.mobileads.AdcashListener;
-import com.adcash.mobileads.AdcashReward;
 import com.adcash.mobileads.exampleproject.native_ad.NativeAdActivity;
-import com.adcash.mobileads.ui.AdcashBannerView;
-import com.adcash.mobileads.ui.AdcashInterstitial;
-import com.adcash.mobileads.ui.AdcashRewardedVideo;
+import com.adcash.mobileads.listeners.AdcashListener;
+import com.adcash.mobileads.listeners.AdcashRewardedListener;
+import com.adcash.mobileads.models.AdcashError;
+import com.adcash.mobileads.models.AdcashReward;
+import com.adcash.mobileads.ads.AdcashBannerView;
+import com.adcash.mobileads.ads.AdcashInterstitial;
+import com.adcash.mobileads.ads.AdcashRewardedVideo;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -24,6 +25,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Adcash.initialize(this);
         setContentView(R.layout.activity_main);
 
         findViewById(R.id.bannerButton).setOnClickListener(this);
@@ -88,13 +90,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void showInterstitial() {
-        mInterstitial = new AdcashInterstitial();
-        mInterstitial.setZoneId("1461177");
+        mInterstitial = new AdcashInterstitial("1461177");
         mInterstitial.setAdListener(new AdcashListener() {
             @Override
             public void onAdLoaded() {
                 Toast.makeText(MainActivity.this, "Interstitial loaded", Toast.LENGTH_SHORT).show();
-                mInterstitial.showAd(MainActivity.this);
+                mInterstitial.show(MainActivity.this);
             }
 
             @Override
@@ -118,19 +119,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Toast.makeText(MainActivity.this, "Interstitial left Application", Toast.LENGTH_SHORT).show();
             }
         });
-        mInterstitial.loadAd(MainActivity.this);
+        mInterstitial.loadAd();
         Toast.makeText(MainActivity.this, "Loading interstitial", Toast.LENGTH_SHORT).show();
     }
 
     private void showRewardedVideo() {
 
-        mRewardedVideo = new AdcashRewardedVideo();
-        mRewardedVideo.setZoneId("1461181");
-        mRewardedVideo.setAdListener(new AdcashRewardedVideo.Listener() {
+        mRewardedVideo = new AdcashRewardedVideo("1461181");
+        mRewardedVideo.setAdListener(new AdcashRewardedListener() {
             @Override
             public void onAdLoaded(AdcashReward reward) {
                 Toast.makeText(MainActivity.this, "Rewarded video loaded", Toast.LENGTH_SHORT).show();
-                mRewardedVideo.showAd(MainActivity.this);
+                mRewardedVideo.show(MainActivity.this);
             }
 
             @Override
@@ -159,7 +159,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Toast.makeText(MainActivity.this, "Rewarded video left Application", Toast.LENGTH_SHORT).show();
             }
         });
-        mRewardedVideo.loadAd(MainActivity.this);
+        mRewardedVideo.loadAd();
         Toast.makeText(MainActivity.this, "Loading rewarded video", Toast.LENGTH_SHORT).show();
     }
 

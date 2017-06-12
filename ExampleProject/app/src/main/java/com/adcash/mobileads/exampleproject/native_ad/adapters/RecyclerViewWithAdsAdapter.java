@@ -4,9 +4,9 @@ import android.app.Activity;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
-import com.adcash.mobileads.AdcashError;
+import com.adcash.mobileads.models.AdcashError;
 import com.adcash.mobileads.models.NativeAdData;
-import com.adcash.mobileads.ui.AdcashNativeAd;
+import com.adcash.mobileads.ads.AdcashNativeAd;
 
 import java.util.List;
 
@@ -32,9 +32,8 @@ public abstract class RecyclerViewWithAdsAdapter<ItemObject> extends RecyclerVie
 
     public RecyclerViewWithAdsAdapter(Activity activity, List<ItemObject> itemList) {
         this.itemList = itemList;
-        adcashNativeAd = new AdcashNativeAd(activity);
-        adcashNativeAd.setListener(adcashAdListener);
-        adcashNativeAd.setZoneId("1479699");
+        adcashNativeAd = new AdcashNativeAd("1479699");
+        adcashNativeAd.setAdListener(adcashAdListener);
         adcashNativeAd.loadAd();
     }
 
