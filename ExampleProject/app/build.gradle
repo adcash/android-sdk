@@ -22,7 +22,7 @@ android {
 
 dependencies {
     // Integrate Adcash SDK:
-    compile('com.adcash:adcash-sdk-lib:2.4.0')
+    compile('com.adcash:adcash-sdk-lib:2.4.1')
 
 
     // Required by Adcash SDK:
